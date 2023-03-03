@@ -51,20 +51,20 @@ function message() {
     }
 }
 
-// fonction pour valider le formulaire
+// Validate form
 document.querySelector("#submit").addEventListener("click", (e) => {
     // "annuler" le comportement par défaut
     e.preventDefault();
 
 
-    // vérifier un par un tous les champs
+    // verify one by one fields
     const verifFirstName = FirstName();
     const verifLastName = LastName();
     const verifEmail = Email();
     const verifMessage = message();
 
 
-    // si tout est vrai 
+    // If all is correct
     if (verifFirstName && verifLastName && verifEmail && verifMessage) {
         console.log(document.getElementById("prenom").value);
         console.log(document.getElementById("nom").value);

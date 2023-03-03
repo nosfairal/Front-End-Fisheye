@@ -1,6 +1,6 @@
 /*global mediasFactory, displayLightbox*/
 
-//Mettre le code JavaScript lié à la page photographer.html
+//Js for photographer.html
 let params = (new URL(document.location)).searchParams;
 let idUrl = params.get('id');
 
@@ -17,12 +17,12 @@ async function getMedia() {
 
 async function init() {
     const photographers = await getPhotographers();
-    // je récupère le photographe lié à l'id de l'URL
+    // Get photographer by id's
     const profil = photographers.find((photo) =>
         photo.id == idUrl
     );
 
-    // si pas (ou mauvais) id je reviens sur la page index
+    // if not return to index
     if (profil == undefined) {
         window.location.href = "/"
     }
@@ -40,12 +40,12 @@ async function init() {
     photographerInfo.appendChild(img);
 
     const mediaSource = await getMedia();
-    // je récupère les médias liés à l'id de l'URL
+    // get medias by url id's
     let medias = mediaSource.filter((m) =>
         m.photographerId == idUrl
     )
 
-    // je trie les médias par ordre alphabétique
+    // Sort medias by alfabetical order
     medias = medias.sort(function (a, b) {
         if (a.title < b.title) {
             return -1;
@@ -56,7 +56,7 @@ async function init() {
         return 0;
     });
 
-    //j'affiche les médias
+    //Display media
     medias.forEach((medias) => {
         const photoCard = mediasFactory(medias, profil.name);
         const MediasCardDOM = photoCard.getMediasDOM();
@@ -65,7 +65,7 @@ async function init() {
         document.querySelector(".lightbox_container").appendChild(MediasCardLightbox);
     });
 
-    //gestion de l'ouverture de la lightbox
+    //Opening of lightbox
     let clickLightbox = document.querySelectorAll(".photos, .videos")
     for (let i = 0; i < clickLightbox.length; i++) {
         clickLightbox[i].addEventListener("click", () => {
@@ -74,13 +74,13 @@ async function init() {
     }
 
 
-    //calcul des likes
+    //calculate likes
     let totalLikes = 0
     medias.forEach((media) => {
         totalLikes += media.likes
     });
 
-    //j'affiche les élements dans la likebox
+    //Display elements into likebox
     const photographerLikesBox = document.querySelector(".box");
     const photographerLikes = document.createElement("div");
     let infoLikes = `<div class="boxInfos"> 

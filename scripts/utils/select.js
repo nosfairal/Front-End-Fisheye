@@ -89,7 +89,7 @@ window.onload = () => {
     }
     like.addEventListener("click", likeSort)
 
-    //tri par titre
+    //Sort by title
     const titles = document.querySelector("#titre-new")
     async function titleSort() {
         const photographers = await getPhotographers();
@@ -147,7 +147,7 @@ window.onload = () => {
     }
     titles.addEventListener("click", titleSort)
 
-    //tri par date
+    //Sort by date
     const mediaDate = document.querySelector("#date-new")
     async function dateSort() {
         const photographers = await getPhotographers();
