@@ -252,6 +252,11 @@ form input {
     border: 1px solid;
     border-radius: 10px;
     width: 200px;
+    margin-left: 2em;
+}
+
+.custom-select-title {
+    margin-left: 2em;
 }
 
 .custom-select select {
