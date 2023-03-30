@@ -62,6 +62,8 @@ function mediasFactory(data, name) {
             const video = document.createElement('video');
             const source = document.createElement('source');
             source.setAttribute("src", medias);
+            source.setAttribute("type", "video/mp4");
+            video.setAttribute("controls", "");
             video.className = 'photos_lightbox';
             video.appendChild(source);
             media.appendChild(video);

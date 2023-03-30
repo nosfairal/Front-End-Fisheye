@@ -13,6 +13,8 @@ window.onload = () => {
         newOption.innerHTML = option.innerHTML;
         newOption.id = option.id + "-new";
         newOption.addEventListener("click", function () {
+            // Cache l'option sélectionnée
+            this.style.display = "none";
             for (let option of selectElt.options) {
                 if (option.innerHTML === this.innerHTML) {
                     selectElt.selectedIndex = option.index;
@@ -21,6 +23,13 @@ window.onload = () => {
                 }
             }
             newSelect.click();
+            // Affiche toutes les autres options
+            for (let option of selectElt.options) {
+                if (option.innerHTML !== this.innerHTML) {
+                    const optionElement = document.getElementById(option.id + "-new");
+                    optionElement.style.display = "";
+                }
+            }
         })
         newMenu.appendChild(newOption);
     }
@@ -31,6 +40,7 @@ window.onload = () => {
         this.nextSibling.classList.toggle("select-hide");
         this.classList.toggle("active");
     })
+
 
     const like = document.querySelector("#likes-new")
     async function likeSort() {
