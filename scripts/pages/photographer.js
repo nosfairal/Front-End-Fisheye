@@ -1,94 +1,81 @@
-/*global mediasFactory, displayLightbox*/
-
-//Js for photographer.html
-let params = (new URL(document.location)).searchParams;
-let idUrl = params.get('id');
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const photographer_id = urlParams.get('id');
 
 async function getPhotographers() {
-    const response = await fetch('data/photographers.json')
-    const fichierjson = await response.json();
-    return fichierjson.photographers;
+    // Penser à remplacer par les données récupérées dans le json
+    const res = await fetch('data/photographers.json');
+    const photographers = res.json();
+    // et bien retourner le tableau photographers seulement une fois
+    return photographers;
 }
-async function getMedia() {
-    const response = await fetch('data/photographers.json')
-    const fichierjson = await response.json();
-    return fichierjson.media;
+
+async function getPhotographerData(data, photographer_id) {
+    let thePhotographer = null;
+    let hisMedia = new Array();
+
+    data.photographers.forEach((photographer) => {
+        if (photographer_id == photographer.id) {
+            thePhotographer = photographer;
+        }
+
+        data.media.forEach((med) => {
+            if (photographer_id == med.photographerId && !hisMedia.includes(med)) {
+                hisMedia.push(med);
+            }
+        })
+    });
+
+    return { thePhotographer, hisMedia }
+};
+
+async function displayDataProfil(photographer) {
+    const { name, portrait, city, country, tagline, price } = photographer;
+
+    const picture = `assets/photographers/${portrait}`;
+
+    const profile_picture = document.querySelector(".profile-pic");
+    const nameProfile = document.querySelector(".info-text--name");
+    const cityProfile = document.querySelector(".info-text--city");
+    const taglineProfile = document.querySelector(".info-text--tagline");
+    const priceProfile = document.querySelector(".price");
+
+    //----------------------------------------------------------------
+    profile_picture.setAttribute('src', picture);
+    profile_picture.setAttribute('alt', name);
+
+    //----------------------------------------------------------------
+    nameProfile.textContent = name;
+    cityProfile.textContent = city + ', ' + country;
+    taglineProfile.textContent = tagline;
+    priceProfile.textContent = price + '€/jour';
+};
+
+async function displayDataMedia(medias) {
+    const container_picture = document.querySelector('.container-picture');
+
+    medias.forEach((media, index) => {
+        const mediaModel = mediaFactory(media);
+        const mediaCardDOM = mediaModel.getMediaCardDOM(index);
+        container_picture.appendChild(mediaCardDOM);
+    });
+    checkMyLikes(medias)
+    getMyTotalLikes(medias)
 }
 
 async function init() {
-    const photographers = await getPhotographers();
-    // Get photographer by id's
-    const profil = photographers.find((photo) =>
-        photo.id == idUrl
-    );
+    const data = await getPhotographers();
+    const { thePhotographer, hisMedia } = await getPhotographerData(data, photographer_id);
 
-    // if not return to index
-    if (profil == undefined) {
-        window.location.href = "/"
-    }
-    const photographerInfo = document.querySelector(".photographer_profile");
-    const photographeHeader = document.createElement("article");
-    const picture = `assets/photographers/${profil.portrait}`;
-    const img = document.createElement('img');
-    img.setAttribute("src", picture);
-    img.classList.add("profilePicture");
-    let info = `<h1 class ="photographer_name">${profil.name}</h1>
-            <p class="photographer_location">${profil.city}, ${profil.country}</p>
-            <p class="photographer_devise">${profil.tagline}</p>`;
-    photographerInfo.prepend(photographeHeader);
-    photographeHeader.innerHTML = info;
-    photographerInfo.appendChild(img);
+    displayDataProfil(thePhotographer, hisMedia);
+    organizeByLikes(hisMedia);
+    displayDataMedia(hisMedia);
+    createSlider(hisMedia);
 
-    const mediaSource = await getMedia();
-    // get medias by url id's
-    let medias = mediaSource.filter((m) =>
-        m.photographerId == idUrl
-    )
-
-    // Sort medias by alfabetical order
-    medias = medias.sort(function (a, b) {
-        if (a.title < b.title) {
-            return -1;
-        }
-        if (a.title > b.title) {
-            return 1;
-        }
-        return 0;
-    });
-
-    //Display media
-    medias.forEach((medias) => {
-        const photoCard = mediasFactory(medias, profil.name);
-        const MediasCardDOM = photoCard.getMediasDOM();
-        const MediasCardLightbox = photoCard.getMediasLightbox();
-        document.querySelector(".pictures_medias").appendChild(MediasCardDOM);
-        document.querySelector(".lightbox_container").appendChild(MediasCardLightbox);
-    });
-
-    //Opening of lightbox
-    let clickLightbox = document.querySelectorAll(".photos, .videos")
-    for (let i = 0; i < clickLightbox.length; i++) {
-        clickLightbox[i].addEventListener("click", () => {
-            displayLightbox(i)
-        })
-    }
-
-
-    //calculate likes
-    let totalLikes = 0
-    medias.forEach((media) => {
-        totalLikes += media.likes
-    });
-
-    //Display elements into likebox
-    const photographerLikesBox = document.querySelector(".box");
-    const photographerLikes = document.createElement("div");
-    let infoLikes = `<div class="boxInfos"> 
-  <div class=""><span class="totalLikes">${totalLikes}</span> <img src="assets/icons/heart-solid.svg" width="18px" height="18px"></div>
-  <div class="boxPrice">${profil.price}€ / jour</div></div>`;
-    photographerLikesBox.prepend(photographerLikes);
-    photographerLikes.innerHTML = infoLikes;
-
-}
+    const filterSelector = document.getElementById("filter");
+    filterSelector.addEventListener("click", () => {
+        changeFilter(hisMedia);
+    })
+};
 
 init();

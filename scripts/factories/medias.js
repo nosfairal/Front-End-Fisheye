@@ -1,91 +1,67 @@
-function mediasFactory(data, name) {
-    const { image, video, title, likes } = data;
+function mediaFactory(data) {
+    const { id, photographerId, title, image, likes, video } = data;
 
-    const coeur = `assets/icons/heart.svg`;
+    // generates media card DOM element
+    function getMediaCardDOM(index) {
+        const mediaCard = document.createElement('article');
+        const image_warpper = document.createElement('a');
+        const description = document.createElement('div');
+        const descrciption_title = document.createElement('h2');
+        const descrciption_btn = document.createElement('button');
+        const like_counter = document.createElement('span');
+        const heart_icon = document.createElement('i');
 
-    let medias;
-    if (image != undefined) {
-        medias = `assets/images/${name.split(" ")[0]}/${image}`;
-    }
-    else {
-        medias = `assets/images/${name.split(" ")[0]}/${video}`;
-    }
+        mediaCard.classList.add("card");
+        mediaCard.id = index;
 
-    function getMediasDOM() {
-        const article = document.createElement('article');
-        if (image != undefined) {
-            const image = document.createElement('img');
-            image.setAttribute("src", medias);
-            image.className = 'photos';
-            article.appendChild(image);
-        }
-        else {
-            const video = document.createElement('video');
+        image_warpper.classList.add("image-warpper");
+        image_warpper.setAttribute("aria-label", title + ", vue plein écran")
+        description.classList.add("card_description");
+        descrciption_btn.classList.add("btn-likes");
+        descrciption_btn.classList.add("likes");
+        like_counter.classList.add("like-counter");
+        like_counter.setAttribute("aria-label", likes + " likes");
+        heart_icon.classList.add("fa-solid");
+        heart_icon.classList.add("fa-heart");
+        heart_icon.classList.add("like-logo");
+
+        description.setAttribute('id', id);
+        description.appendChild(descrciption_title);
+        description.appendChild(descrciption_btn);
+        descrciption_btn.appendChild(like_counter);
+        descrciption_btn.appendChild(heart_icon);
+
+        descrciption_title.innerText = title;
+        like_counter.innerText = likes;
+
+
+        mediaCard.appendChild(image_warpper);
+        mediaCard.appendChild(description);
+
+        if (video) {
+            const videoDom = document.createElement('video');
+            videoDom.setAttribute('preload', "metadata");
+            videoDom.setAttribute("controls", "");
+            videoDom.setAttribute("type", "video/mp4");
+            videoDom.classList.add("video-element");
+
             const source = document.createElement('source');
-            source.setAttribute("src", medias);
-            source.setAttribute("type", "video/mp4");
-            video.setAttribute("controls", "");
-            video.className = 'videos';
-            video.appendChild(source);
-            article.appendChild(video);
+            source.setAttribute('src', `assets/photographers/${photographerId}/${video}`);
+
+            source.setAttribute('title', likes);
+            source.setAttribute('type', 'video/mp4');
+            source.setAttribute('autostart', 'false');
+
+            videoDom.appendChild(source);
+            image_warpper.appendChild(videoDom);
+        } else {
+            const imageDom = document.createElement('img');
+            imageDom.setAttribute('src', `assets/photographers/${photographerId}/${image}`);
+            imageDom.setAttribute('alt', image);
+            image_warpper.appendChild(imageDom);
         }
-        const legende = document.createElement('div');
-        const titre = document.createElement('span');
-        titre.classList.add('title');
-        titre.textContent = title;
-        const nbLikes = document.createElement('span');
-        nbLikes.classList.add('likes');
-        nbLikes.textContent = likes;
-        const img = document.createElement('img');
-        img.setAttribute("src", coeur);
-        img.className = 'coeur';
-        img.addEventListener("click", addLike);
-        img.addEventListener("click", photoLike);
-        legende.classList.add("media_infos");
-        legende.appendChild(titre);
-        legende.appendChild(nbLikes);
-        legende.appendChild(img);
-        article.appendChild(legende);
-        return (article);
+        return mediaCard
     }
 
-    function getMediasLightbox() {
-        const media = document.createElement('div');
-        media.className = 'media_lightbox';
-        if (image != undefined) {
-            const image = document.createElement('img');
-            image.setAttribute("src", medias);
-            image.className = 'photos_lightbox';
-            media.appendChild(image);
-        }
-        else {
-            const video = document.createElement('video');
-            const source = document.createElement('source');
-            source.setAttribute("src", medias);
-            source.setAttribute("type", "video/mp4");
-            video.setAttribute("controls", "");
-            video.className = 'photos_lightbox';
-            video.appendChild(source);
-            media.appendChild(video);
-        }
-        const h2 = document.createElement('div');
-        h2.textContent = `${title}`;
-        h2.classList.add("media_infos");
-        media.appendChild(h2);
-        return (media);
-    }
-
-    return { getMediasDOM, getMediasLightbox, }
-}
-
-function addLike() {
-    let like = document.querySelector(".totalLikes").textContent;
-    like = parseInt(like) + 1;
-    document.querySelector(".totalLikes").textContent = like;
-}
-
-function photoLike(e) {
-    let addHeart = e.target.previousSibling.textContent;
-    addHeart = parseInt(addHeart) + 1;
-    e.target.previousSibling.textContent = addHeart;
+    return { getMediaCardDOM }
 }
