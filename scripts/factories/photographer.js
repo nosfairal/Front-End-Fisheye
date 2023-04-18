@@ -8,18 +8,18 @@ function photographerFactory(data) {
     // generates user card DOM element
     function getUserCardDOM() {
         const redirect = document.createElement('a');
-        redirect.setAttribute('href', url)
+        redirect.setAttribute('href', url);
+        redirect.setAttribute('aria-label', name);
         const article = document.createElement('article');
         const container_img = document.createElement('div');
         const img = document.createElement('img');
         img.setAttribute("src", picture);
-        img.setAttribute("alt", "Image_profil")
+        img.setAttribute("alt", "Image_profil");
         const h2 = document.createElement('h2');
 
-        const location = document.createElement('span');
-        const sentence = document.createElement('span');
-        const dayprice = document.createElement('span');
-
+        const location = document.createElement('h3');
+        const sentence = document.createElement('h3');
+        const dayprice = document.createElement('h3');
 
         container_img.classList.add('container_img');
         location.classList.add('location');
@@ -30,6 +30,10 @@ function photographerFactory(data) {
         sentence.textContent = tagline;
         dayprice.textContent = price + '€/jour';
         h2.textContent = name;
+
+        location.setAttribute('tabindex', 0);
+        sentence.setAttribute('tabindex', 0);
+        dayprice.setAttribute('tabindex', 0);
 
         redirect.appendChild(article);
         article.appendChild(container_img);
