@@ -76,6 +76,15 @@ async function init() {
     filterSelector.addEventListener("click", () => {
         changeFilter(hisMedia);
     })
+    const hisMediaEvent = new CustomEvent("hisMediaAvailable", {
+        detail: {
+            hisMedia: hisMedia,
+        },
+    });
+
+    // Dispatch the event
+    document.dispatchEvent(hisMediaEvent);
 };
 
 init();
+

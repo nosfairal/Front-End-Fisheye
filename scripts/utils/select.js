@@ -1,6 +1,12 @@
 const options = document.querySelectorAll(".option");
 const dropdownBtn = document.querySelector(".dropdown-menu__button");
 const dropdown = document.querySelector(".selector");
+let medias;
+
+// Listen for the custom event
+document.addEventListener("hisMediaAvailable", (e) => {
+    medias = e.detail.hisMedia;
+});
 
 /**
  * changeFilter(medias)
@@ -43,27 +49,38 @@ dropdownBtn.addEventListener("click", () => {
 
 
 options.forEach(option => {
-    //if clicked then hide dropdown and show btn
-    option.addEventListener("click", () => {
-        dropdownBtn.innerHTML = option.innerHTML;
+    // Si cliqué, masquez le menu déroulant et affichez le bouton
+    option.addEventListener("click", handleOptionClick);
+
+    // Si la touche Entrée a été enfoncée, masquez le menu déroulant et affichez le bouton
+    option.addEventListener("keydown", (e) => {
+        if (e.code === "Enter" || e.code === "NumpadEnter") {
+            handleOptionClick.call(option);
+        }
+    });
+
+    function handleOptionClick() {
+        dropdownBtn.innerHTML = this.innerHTML;
         dropdownBtn.setAttribute("aria-haspopup", true);
         dropdownBtn.setAttribute("aria-expanded", false);
         dropdown.style.display = "none";
         dropdownBtn.style.display = "flex";
 
-        //remove previous check
-        options.forEach(option => {
-            option.classList.remove("checked");
-            option.setAttribute("aria-selected", false);
-        })
-        //add check
-        option.classList.add("checked");
-        option.parentElement.setAttribute("aria-activedescendant", option.id)
-        option.setAttribute("aria-selected", "true");
-        dropdownBtn.setAttribute("aria-activedescendant", option.innerText);
-        dropdownBtn.setAttribute("aria-labelledby", option.innerText);
-    })
-})
+        // Supprimer la vérification précédente
+        options.forEach(opt => {
+            opt.classList.remove("checked");
+            opt.setAttribute("aria-selected", false);
+        });
+        // Ajouter une vérification
+        this.classList.add("checked");
+        this.parentElement.setAttribute("aria-activedescendant", this.id);
+        this.setAttribute("aria-selected", "true");
+        dropdownBtn.setAttribute("aria-activedescendant", this.innerText);
+        dropdownBtn.setAttribute("aria-labelledby", this.innerText);
+        changeFilter(medias);
+    }
+
+});
 
 /**
  * removeAllCardsAllSlides():

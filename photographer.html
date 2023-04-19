@@ -1,181 +1,195 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="css/photographer.css" rel="stylesheet" type="text/css">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/2ace4a1d36.js" crossorigin="anonymous"></script>
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <a href="index.html" aria-label="Fisheye logo"> 
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
-      </a>
-    </header>
-    <main id="main">
-      <!-- Profile section -->
-      <section class="photograph-header">
-        <div class="photograph-profile">
-          <div class="photograph-info">
-            <div class="photograph-info_name">
-                <h1 class="info-text info-text--name">Name</h1>
-            </div>
-            <div class="photograph-info_city">
-              <h2 class="info-text info-text--city">City</h2>
-            </div>
-            <div class="photograph-info_tagline">
-              <p class="info-text info-text--tagline">tagline</p>
-            </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/photographer.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/2ace4a1d36.js" crossorigin="anonymous"></script>
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html" aria-label="Fisheye logo">
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
+    </a>
+  </header>
+  <main id="main">
+    <!-- Profile section -->
+    <section class="photograph-header">
+      <div class="photograph-profile">
+        <div class="photograph-info">
+          <div class="photograph-info_name">
+            <h1 class="info-text info-text--name">Name</h1>
           </div>
-          <div class="button-wrapper">
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+          <div class="photograph-info_city">
+            <h2 class="info-text info-text--city">City</h2>
           </div>
-          <div class="image-warpper">
-            <img class="profile-pic" src="/" alt="">
+          <div class="photograph-info_tagline">
+            <p class="info-text info-text--tagline">tagline</p>
           </div>
         </div>
-      </section>
-      <!-- Fixed section -->
-      <div class="sub-info footer">
-        <div class="sub-info__likes">
-          <span class="like-quantity"></span>
-          <i class="fa-solid fa-heart"></i>
+        <div class="button-wrapper">
+          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </div>
-  
-        <div class="sub-info__price">
-          <span class="price"></span>
+        <div class="image-warpper">
+          <img class="profile-pic" src="/" alt="">
         </div>
       </div>
+    </section>
+    <!-- Fixed section -->
+    <div class="sub-info footer">
+      <div class="sub-info__likes">
+        <span class="like-quantity"></span>
+        <i class="fa-solid fa-heart"></i>
+      </div>
 
-      <!-- Fixed section  -->
-      <div class="picture-section">
-        <div class="filter">
-          <input class="dropdown-checkbox" type="checkbox" id="dropdown" name="dropdown">
-          <label class="filter_by" for="dropdown">Trier par</label>
-          <div class="selector-warpper">
-            <button id="dropdown-menu" class="dropdown-menu__button" aria-haspopup="true" aria-expanded="false">
+      <div class="sub-info__price">
+        <span class="price"></span>
+      </div>
+    </div>
+
+    <!-- Fixed section  -->
+    <div class="picture-section">
+      <div class="filter">
+        <input class="dropdown-checkbox" type="checkbox" id="dropdown" name="dropdown">
+        <label class="filter_by" for="dropdown">Trier par</label>
+        <div class="selector-warpper">
+          <button id="dropdown-menu" class="dropdown-menu__button" aria-haspopup="true" tabindex="0"
+            aria-expanded="false">
+            <span>Popularité</span>
+            <i class="fa-solid fa-chevron-down icon-filter"></i>
+          </button>
+          <ul role="listbox" class="selector" id="filter" tabindex="0" aria-controls="dropdown-menu"
+            aria-labelledby="popularity" aria-activedescendant="popularity">
+            <li role="option" class="option" id="popularity" tabindex="0" aria-label="Trier par popularité">
               <span>Popularité</span>
               <i class="fa-solid fa-chevron-down icon-filter"></i>
-            </button>
-            <ul role="listbox" class="selector" id="filter" tabindex="-1" aria-controls="dropdown-menu" aria-labelledby="popularity" aria-activedescendant="popularity">
-              <li role="option" class="option" id="popularity" aria-label="Trier par popularité">
-                <span>Popularité</span>
-                <i class="fa-solid fa-chevron-down icon-filter"></i>
-              </li>
-              <li role="option" class="option" id="date" aria-label="Trier par date">
-                <span>Date</span>
-                <i class="fa-solid fa-chevron-down icon-filter"></i>
-              </li>
-              <li role="option" class="option" id="title" aria-label="Trier par titre">
-                <span>Titre</span>
-                <i class="fa-solid fa-chevron-down icon-filter"></i>
-              </li>
-            </ul>
+            </li>
+            <li role="option" class="option" id="date" tabindex="0" aria-label="Trier par date">
+              <span>Date</span>
+              <i class="fa-solid fa-chevron-down icon-filter"></i>
+            </li>
+            <li role="option" class="option" id="title" tabindex="0" aria-label="Trier par titre">
+              <span>Titre</span>
+              <i class="fa-solid fa-chevron-down icon-filter"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container-picture">
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Slider/Carousel section -->
+  <div id="carousel-section" class="carousel carousel-section" role="dialog" aria-hidden="true"
+    aria-label="vu de l'image en plein écran">
+    <div class="carousel__bg">
+      <a href="#" class="close-btn" role="button" aria-label="ferme la boite de dialogue">
+        <span class="fas fa-times cross" aria-hidden="true"></span>
+        <span class="sr-only">Fermer le carousel</span>
+      </a>
+
+      <a href="#" class="prev" id="prev" role="button" aria-label="image précédente">
+        <span class="fas fa-angle-left arrow" aria-hidden="true"></span>
+        <span class="sr-only">Aller à la photographie précédente</span>
+      </a>
+
+      <div id="carousel" class="carousel__content">
+
+      </div>
+
+      <a href="#" class="next" id="next" role="button" aria-label="image suivante">
+        <span class="fas fa-angle-right arrow" aria-hidden="true"></span>
+        <span class="sr-only">Aller à la photographie suivante</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Contact section -->
+  <div id="contact-modal-section" class="contact_modal contact-modal-section" role="dialog" aria-hidden="true"
+    style="display: none;">
+
+    <div class="modal-bg"></div>
+
+    <div class="modal" id="contact_modal" aria-labelledby="contact__header">
+
+      <a href="#" class="close-modal-btn-wrapper" id="close-modal-btn-wrapper" onclick="closeModal()">
+        <img id="close-modal-btn" class="close-modal-btn" src="assets/icons/close.svg"
+          alt="ferme le formulaire de contact">
+      </a>
+
+      <header id="contact__header" class="contact__header">
+        <h2 class="contact__header__title">Contactez-moi</h2>
+        <h2 id="contact-photographer-name" class="contact__header__title"></h2>
+      </header>
+
+      <form action="photographer.html" method="get" class="form contact-form">
+
+        <fieldset class="fieldset information--fieldset">
+          <legend class="legend information---legend">Vos coordonnées</legend>
+
+          <div class="form-data">
+            <label class="label" for="firstName">Prénom</label>
+            <input class="contact-form__input" type="text" name="firstName" id="firstName" data-type="name"
+              placeholder="Jean" aria-invalid="true" required="" aria-required="true">
+            <span class="error__message" aria-hidden="true">Veuillez entrer un prénom valide.</span>
           </div>
-        </div>
 
-        <div class="container-picture">
+          <div class="form-data">
+            <label class="label" for="lastName">Nom</label>
+            <input class="contact-form__input" type="text" name="lastName" id="lastName" data-type="name"
+              placeholder="Dupont" aria-invalid="true" required="" aria-required="true">
+            <span class="error__message" aria-hidden="true">Veuillez entrer un nom valide.</span>
+          </div>
 
-        </div>
-      </div>
+          <div class="form-data">
+            <label class="label" for="email">Email</label>
+            <input class="contact-form__input" type="email" name="email" id="email" data-type="email"
+              placeholder="adresse@email.com" aria-labelledby="email" aria-describedby="email-format" required=""
+              aria-invalid="true" aria-required="true">
+            <span class="error__message" aria-hidden="true">Veuillez entrer un email valide.</span>
+            <span id="email-format" class="hidden">adresse@email.com</span>
+          </div>
 
-    </main>
+        </fieldset>
 
-    <!-- Slider/Carousel section -->
-    <div id="carousel-section" class="carousel carousel-section" role="dialog" aria-hidden="true" aria-label="vu de l'image en plein écran">
-      <div class="carousel__bg">
-        <a href="#" class="close-btn" role="button" aria-label="ferme la boite de dialogue">
-          <span class="fas fa-times cross" aria-hidden="true"></span>
-          <span class="sr-only">Fermer le carousel</span>
-        </a>
-  
-        <a href="#" class="prev" id="prev" role="button" aria-label="image précédente">
-          <span class="fas fa-angle-left arrow" aria-hidden="true"></span>
-          <span class="sr-only">Aller à la photographie précédente</span>
-        </a>
-  
-        <div id="carousel" class="carousel__content">
-              
-        </div>
-  
-        <a href="#" class="next" id="next" role="button" aria-label="image suivante">
-          <span class="fas fa-angle-right arrow" aria-hidden="true"></span>
-          <span class="sr-only">Aller à la photographie suivante</span>
-        </a>
-      </div>
-    </div>
-    
-    <!-- Contact section -->
-    <div id="contact-modal-section" class="contact_modal contact-modal-section" role="dialog" aria-hidden="true" style="display: none;">
+        <fieldset class="fieldset message--fieldset">
+          <legend class="legend message-legend">Votre message</legend>
 
-      <div class="modal-bg"></div>
-  
-      <div class="modal" id="contact_modal" aria-labelledby="contact__header">
-  
-        <a href="#" class="close-modal-btn-wrapper" id="close-modal-btn-wrapper" onclick="closeModal()">
-          <img id="close-modal-btn" class="close-modal-btn" src="assets/icons/close.svg" alt="ferme le formulaire de contact">
-        </a>
-  
-        <header id="contact__header" class="contact__header">
-          <h2 class="contact__header__title">Contactez-moi</h2>
-          <h2 id="contact-photographer-name" class="contact__header__title"></h2>
-        </header>
-  
-        <form action="photographer.html" method="get" class="form contact-form">
-  
-          <fieldset class="fieldset information--fieldset">
-            <legend class="legend information---legend">Vos coordonnées</legend>
-  
-            <div class="form-data">
-              <label class="label" for="firstName">Prénom</label>
-              <input class="contact-form__input" type="text" name="firstName" id="firstName" data-type="name" placeholder="Jean" aria-invalid="true" required="" aria-required="true">
-              <span class="error__message" aria-hidden="true">Veuillez entrer un prénom valide.</span>
-            </div>
-  
-            <div class="form-data">
-              <label class="label" for="lastName">Nom</label>
-              <input class="contact-form__input" type="text" name="lastName" id="lastName" data-type="name" placeholder="Dupont" aria-invalid="true" required="" aria-required="true">
-              <span class="error__message" aria-hidden="true">Veuillez entrer un nom valide.</span>
-            </div>
-  
-            <div class="form-data">
-              <label class="label" for="email">Email</label>
-              <input class="contact-form__input" type="email" name="email" id="email" data-type="email" placeholder="adresse@email.com" aria-labelledby="email" aria-describedby="email-format" required="" aria-invalid="true" aria-required="true">
-              <span class="error__message" aria-hidden="true">Veuillez entrer un email valide.</span>
-              <span id="email-format" class="hidden">adresse@email.com</span>
-            </div>
-  
-          </fieldset>
-  
-          <fieldset class="fieldset message--fieldset">
-            <legend class="legend message-legend">Votre message</legend>
-  
-            <div class="form-data">
-              <label class="label" for="message">Votre message</label>
-              <textarea class="contact-form__input contact-form__input--message-content" name="message" id="message" data-type="message" placeholder="Votre message ici..." required="" aria-invalid="true" aria-required="true"></textarea>
-              <span class="error__message" aria-hidden="true">Votre message doit comporter au moins 200 caractères.</span>
-            </div>
-          </fieldset>
-  
-  
-          <button type="button" id="form-submit-btn" class="contact_button contact_button--submit">Envoyer</button>
-  
-        </form>
-  
-      </div> 
+          <div class="form-data">
+            <label class="label" for="message">Votre message</label>
+            <textarea class="contact-form__input contact-form__input--message-content" name="message" id="message"
+              data-type="message" placeholder="Votre message ici..." required="" aria-invalid="true"
+              aria-required="true"></textarea>
+            <span class="error__message" aria-hidden="true">Votre message doit comporter au moins 200 caractères.</span>
+          </div>
+        </fieldset>
+
+
+        <button type="button" id="form-submit-btn" class="contact_button contact_button--submit">Envoyer</button>
+
+      </form>
 
     </div>
-    <!-- Script -->
-    <script src="scripts/factories/medias.js"></script>
-    <script src="scripts/utils/contactForm.js"></script>
-    <script src="scripts/utils/select.js"></script>
-    <script src="scripts/utils/sliders.js"></script>
-    <script src="scripts/utils/like.js"></script>
-    <script src="scripts/pages/photographer.js"></script>
-  </body>
+
+  </div>
+  <!-- Script -->
+  <script src="scripts/factories/medias.js"></script>
+  <script src="scripts/utils/contactForm.js"></script>
+  <script src="scripts/utils/select.js"></script>
+  <script src="scripts/utils/sliders.js"></script>
+  <script src="scripts/utils/like.js"></script>
+  <script src="scripts/pages/photographer.js"></script>
+</body>
+
 </html>
