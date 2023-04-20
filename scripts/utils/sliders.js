@@ -159,6 +159,12 @@ function displaySlideOnClick(pictureArray) {
 
             displaySlide(index);
         });
+        picture.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openCarouselAtIndex(picture);
+            }
+        });
     });
 }
 
@@ -216,3 +222,14 @@ window.addEventListener("keyup", (e) => {
         previousSlide(1);
     }
 });
+
+function openCarouselAtIndex(picture) {
+    const index = parseInt(picture.parentElement.id);
+    carouselSection.style.display = "block";
+    carouselSection.setAttribute("aria-hidden", "false");
+    hideMainDom();
+
+    closeBtn.focus();
+
+    displaySlide(index);
+}

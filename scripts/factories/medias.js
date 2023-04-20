@@ -16,11 +16,19 @@ function mediaFactory(data) {
 
         image_warpper.classList.add("image-warpper");
         image_warpper.setAttribute("aria-label", title + ", vue plein écran")
+        image_warpper.setAttribute("role", "button");
+        image_warpper.setAttribute("tabindex", "0");
+
         description.classList.add("card_description");
         descrciption_btn.classList.add("btn-likes");
         descrciption_btn.classList.add("likes");
+        descrciption_btn.setAttribute("aria-label", "Aimer cette photo");
+        descrciption_btn.setAttribute("role", "button");
+        descrciption_btn.setAttribute("tabindex", "0");
+
         like_counter.classList.add("like-counter");
         like_counter.setAttribute("aria-label", likes + " likes");
+
         heart_icon.classList.add("fa-solid");
         heart_icon.classList.add("fa-heart");
         heart_icon.classList.add("like-logo");
@@ -48,7 +56,7 @@ function mediaFactory(data) {
             const source = document.createElement('source');
             source.setAttribute('src', `assets/photographers/${photographerId}/${video}`);
 
-            source.setAttribute('title', likes);
+            source.setAttribute('title', title + ", video");
             source.setAttribute('type', 'video/mp4');
             source.setAttribute('autostart', 'false');
 
@@ -57,7 +65,7 @@ function mediaFactory(data) {
         } else {
             const imageDom = document.createElement('img');
             imageDom.setAttribute('src', `assets/photographers/${photographerId}/${image}`);
-            imageDom.setAttribute('alt', image);
+            imageDom.setAttribute('alt', title + ", photo");
             image_warpper.appendChild(imageDom);
         }
         return mediaCard
