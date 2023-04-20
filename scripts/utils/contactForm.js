@@ -1,6 +1,7 @@
 const submitBtn = document.getElementById("form-submit-btn");
 const closeContactBtn = document.getElementById("close-modal-btn-wrapper");
 const contactModalSection = document.getElementById("contact-modal-section");
+const inputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 
 //listen to click on submit form button
 submitBtn.addEventListener("click", (e) => validateForm(e));
@@ -9,7 +10,7 @@ submitBtn.addEventListener("click", (e) => validateForm(e));
  * displayModal():
  * display the contact form modal
  **/
-function displayModal() {
+export function displayModal() {
     contactModalSection.setAttribute("aria-hidden", "false");
     hideMainDom();
     contactModalSection.style.display = "flex";
@@ -21,7 +22,7 @@ function displayModal() {
  * closeModal():
  * close the contact form modal
  **/
-function closeModal() {
+export function closeModal() {
     contactModalSection.setAttribute("aria-hidden", true);
     displayMainDom();
     contactModalSection.style.display = "none";
@@ -31,7 +32,7 @@ function closeModal() {
  * closeModal():
  * reset the contact form modal
  **/
-function resetContactForm() {
+export function resetContactForm() {
     closeModal();
     inputs.forEach(input => {
         input.value = "";
@@ -73,7 +74,7 @@ const header = document.querySelector("header");
  * hideMainDom():
  * hide main dom
  **/
-function hideMainDom() {
+export function hideMainDom() {
     main.setAttribute("aria-hidden", "true");
     main.classList.add("hidden");
     header.setAttribute("aria-hidden", "true");
@@ -84,7 +85,7 @@ function hideMainDom() {
  * displayMainDom():
  * display main dom
  **/
-function displayMainDom() {
+export function displayMainDom() {
     main.setAttribute("aria-hidden", "false");
     main.classList.remove("hidden");
     header.setAttribute("aria-hidden", "false");

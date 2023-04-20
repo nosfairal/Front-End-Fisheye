@@ -1,3 +1,8 @@
+import { mediaFactory } from "../factories/medias.js";
+import { checkMyLikes, getMyTotalLikes } from "../utils/like.js";
+import { createSlider } from "../utils/sliders.js";
+import { organizeByLikes, changeFilter } from "../utils/select.js";
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const photographer_id = urlParams.get('id');
@@ -27,7 +32,7 @@ async function getPhotographerData(data, photographer_id) {
     });
 
     return { thePhotographer, hisMedia }
-};
+}
 
 async function displayDataProfil(photographer) {
     const { name, portrait, city, country, tagline, price } = photographer;
@@ -51,9 +56,9 @@ async function displayDataProfil(photographer) {
     taglineProfile.textContent = tagline;
     priceProfile.textContent = price + '€/jour';
     contactPhotographerName.textContent = name;
-};
+}
 
-async function displayDataMedia(medias) {
+export async function displayDataMedia(medias) {
     const container_picture = document.querySelector('.container-picture');
 
     medias.forEach((media, index) => {
@@ -86,7 +91,7 @@ async function init() {
 
     // Dispatch the event
     document.dispatchEvent(hisMediaEvent);
-};
+}
 
 init();
 

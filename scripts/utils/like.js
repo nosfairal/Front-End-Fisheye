@@ -3,7 +3,7 @@
  * @param {Array} pictureArray
  * when we click on one like, it add or remove one like in the counter 
  * */
-function checkMyLikes(pictureArray) {
+export function checkMyLikes(pictureArray) {
     const likes = document.querySelectorAll(".likes");
     likes.forEach(like => {
         like.addEventListener("click", () => {
@@ -41,7 +41,7 @@ function checkMyLikes(pictureArray) {
  * @param {Array} pictureArray
  * calculate the total of likes in the entire page 
  * */
-function getMyTotalLikes(pictureArray) {
+export function getMyTotalLikes(pictureArray) {
     let totalLikes = 0;
     pictureArray.forEach(pic => {
         totalLikes += pic.likes;

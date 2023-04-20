@@ -1,3 +1,4 @@
+import { displayMainDom, hideMainDom, closeModal } from "./contactForm.js";
 const closeBtn = document.querySelector(".close-btn");
 const carouselSection = document.getElementById("carousel-section");
 const body = document.querySelector("body");
@@ -9,7 +10,7 @@ let currentSlide;
  * @param {Object} medias
  * To all media image display sliders on click and create slide for each media
  **/
-function createSlider(medias) {
+export function createSlider(medias) {
     let pictures = document.querySelectorAll(".card > .image-warpper");
     displaySlideOnClick(pictures);
 

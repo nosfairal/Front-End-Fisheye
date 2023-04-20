@@ -1,4 +1,4 @@
-function mediaFactory(data) {
+export const mediaFactory = (data) => {
     const { id, photographerId, title, image, likes, video } = data;
 
     // generates media card DOM element

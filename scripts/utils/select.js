@@ -1,3 +1,5 @@
+import { displayDataMedia } from "../pages/photographer.js";
+import { createSlider } from "./sliders.js";
 const options = document.querySelectorAll(".option");
 const dropdownBtn = document.querySelector(".dropdown-menu__button");
 const dropdown = document.querySelector(".selector");
@@ -13,7 +15,7 @@ document.addEventListener("hisMediaAvailable", (e) => {
  * @param {Object} medias data of medias of the photographer  
  * change filter choice
  **/
-function changeFilter(medias) {
+export function changeFilter(medias) {
     removeAllCardsAllSlides();
 
     const checkedFilter = document.querySelector(".checked").id;
@@ -103,7 +105,7 @@ function removeAllCardsAllSlides() {
  * @param {Object} media
  * Organize media By most Likes
  **/
-const organizeByLikes = (media) => {
+export const organizeByLikes = (media) => {
     // if function of comparaison return somthing > 0 then sort a after b
     media.sort((a, b) => b.likes - a.likes);
 }

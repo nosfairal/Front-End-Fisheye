@@ -1,5 +1,5 @@
 // generates photographers cards in home page
-function photographerFactory(data) {
+export const photographerFactory = (data) => {
     const { id, name, portrait, city, country, tagline, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
