@@ -91,3 +91,11 @@ export function displayMainDom() {
     header.setAttribute("aria-hidden", "false");
     header.classList.remove("hidden");
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const contactButton = document.querySelector('.contact_button');
+    contactButton.addEventListener('click', displayModal);
+
+    const closeModalButtonWrapper = document.getElementById('close-modal-btn-wrapper');
+    closeModalButtonWrapper.addEventListener('click', closeModal);
+});

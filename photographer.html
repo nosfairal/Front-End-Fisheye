@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="button-wrapper">
-          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+          <button class="contact_button">Contactez-moi</button>
         </div>
         <div class="image-warpper">
           <img class="profile-pic" src="/" alt="">
@@ -123,7 +123,7 @@
 
     <div class="modal" id="contact_modal" aria-labelledby="contact__header">
 
-      <a href="#" class="close-modal-btn-wrapper" id="close-modal-btn-wrapper" onclick="closeModal()">
+      <a href="#" class="close-modal-btn-wrapper" id="close-modal-btn-wrapper">
         <img id="close-modal-btn" class="close-modal-btn" src="assets/icons/close.svg"
           alt="ferme le formulaire de contact">
       </a>
@@ -190,11 +190,6 @@
   <script type="module" src="scripts/utils/sliders.js"></script>
   <script type="module" src="scripts/utils/like.js"></script>
   <script type="module" src="scripts/pages/photographer.js"></script>
-  <script type="module">
-    import { displayModal, closeModal } from '/scripts/utils/contactForm.js';
-    window.displayModal = displayModal;
-    window.closeModal = closeModal;
-  </script>
 </body>
 
 </html>
