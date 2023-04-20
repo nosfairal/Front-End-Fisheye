@@ -39,6 +39,7 @@ async function displayDataProfil(photographer) {
     const cityProfile = document.querySelector(".info-text--city");
     const taglineProfile = document.querySelector(".info-text--tagline");
     const priceProfile = document.querySelector(".price");
+    const contactPhotographerName = document.getElementById("contact-photographer-name");
 
     //----------------------------------------------------------------
     profile_picture.setAttribute('src', picture);
@@ -49,6 +50,7 @@ async function displayDataProfil(photographer) {
     cityProfile.textContent = city + ', ' + country;
     taglineProfile.textContent = tagline;
     priceProfile.textContent = price + '€/jour';
+    contactPhotographerName.textContent = name;
 };
 
 async function displayDataMedia(medias) {
