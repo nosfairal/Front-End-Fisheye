@@ -46,7 +46,7 @@
     <div class="sub-info footer">
       <div class="sub-info__likes">
         <span class="like-quantity"></span>
-        <i class="fa-solid fa-heart"></i>
+        <span class="fa-solid fa-heart" aria-hidden="true" role="img"></span>
       </div>
 
       <div class="sub-info__price">
@@ -63,21 +63,21 @@
           <button id="dropdown-menu" class="dropdown-menu__button" aria-haspopup="true" tabindex="0"
             aria-expanded="false">
             <span>Popularité</span>
-            <i class="fa-solid fa-chevron-down icon-filter"></i>
+            <span class="fa-solid fa-chevron-down icon-filter" aria-hidden="true" role="img"></span>
           </button>
           <ul role="listbox" class="selector" id="filter" tabindex="0" aria-controls="dropdown-menu"
             aria-labelledby="popularity" aria-activedescendant="popularity">
             <li role="option" class="option" id="popularity" tabindex="0" aria-label="Trier par popularité">
               <span>Popularité</span>
-              <i class="fa-solid fa-chevron-down icon-filter"></i>
+              <span class="fa-solid fa-chevron-down icon-filter" aria-hidden="true" role="img"></span>
             </li>
             <li role="option" class="option" id="date" tabindex="0" aria-label="Trier par date">
               <span>Date</span>
-              <i class="fa-solid fa-chevron-down icon-filter"></i>
+              <span class="fa-solid fa-chevron-down icon-filter" aria-hidden="true" role="img"></span>
             </li>
             <li role="option" class="option" id="title" tabindex="0" aria-label="Trier par titre">
               <span>Titre</span>
-              <i class="fa-solid fa-chevron-down icon-filter"></i>
+              <span class="fa-solid fa-chevron-down icon-filter" aria-hidden="true" role="img"></span>
             </li>
           </ul>
         </div>
@@ -190,6 +190,11 @@
   <script type="module" src="scripts/utils/sliders.js"></script>
   <script type="module" src="scripts/utils/like.js"></script>
   <script type="module" src="scripts/pages/photographer.js"></script>
+  <script type="module">
+    import { displayModal, closeModal } from '/scripts/utils/contactForm.js';
+    window.displayModal = displayModal;
+    window.closeModal = closeModal;
+  </script>
 </body>
 
 </html>
