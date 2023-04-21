@@ -8,10 +8,8 @@ const urlParams = new URLSearchParams(queryString);
 const photographer_id = urlParams.get('id');
 
 async function getPhotographers() {
-    // Penser à remplacer par les données récupérées dans le json
     const res = await fetch('data/photographers.json');
     const photographers = res.json();
-    // et bien retourner le tableau photographers seulement une fois
     return photographers;
 }
 
@@ -56,6 +54,7 @@ async function displayDataProfil(photographer) {
     taglineProfile.textContent = tagline;
     priceProfile.textContent = price + '€/jour';
     contactPhotographerName.textContent = name;
+    contactPhotographerName.setAttribute('aria-hidden', 'false');
 }
 
 export async function displayDataMedia(medias) {
